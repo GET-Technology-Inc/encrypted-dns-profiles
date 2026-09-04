@@ -9,6 +9,21 @@
 
 default_platform(:mac)
 
+# match prints a summary table of all its options, and long values get wrapped
+# across lines, which defeats the secret masking in CI logs. Keep the storage
+# location and credentials out of that table entirely.
+::FastlaneCore::PrintTable.singleton_class.class_eval do
+  alias_method :print_values_without_redaction, :print_values
+
+  def print_values(config: nil, title: nil, hide_keys: [], mask_keys: [], transform: :newline)
+    redacted = hide_keys + [
+      :git_url, :git_branch, :git_basic_authorization, :git_bearer_authorization,
+      :git_private_key, :keychain_name, :keychain_password, :app_identifier,
+    ]
+    print_values_without_redaction(config: config, title: title, hide_keys: redacted, mask_keys: mask_keys, transform: transform)
+  end
+end
+
 IDENTITY = ENV.fetch("SIGNING_IDENTITY", "Developer ID Application: GET TECHNOLOGY INC. (FAW8H2KWX2)")
 
 platform :mac do

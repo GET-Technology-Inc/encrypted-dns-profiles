@@ -43,14 +43,16 @@ jobs:
 
       - name: Generate, sign and verify
         env:
-          # Repository variable: git URL of the match storage that holds ONLY the
-          # developer_id certificate (keep it separate from app signing).
-          MATCH_GIT_URL: ${{ vars.MATCH_GIT_URL }}
+          # All match settings live in repository secrets, so nothing about the
+          # certificate storage appears in this file or in the logs.
+          MATCH_GIT_URL: ${{ secrets.MATCH_GIT_URL }}
+          MATCH_GIT_BRANCH: ${{ secrets.MATCH_GIT_BRANCH }}
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
-          # One of the two, depending on how the match repo is reached:
           MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
-          MATCH_GIT_PRIVATE_KEY: ${{ secrets.MATCH_GIT_PRIVATE_KEY }}
-          SIGNING_IDENTITY: ${{ vars.SIGNING_IDENTITY }}
+          FASTLANE_SKIP_UPDATE_CHECK: "true"
+          FASTLANE_HIDE_CHANGELOG: "true"
+          FASTLANE_SKIP_ACTION_SUMMARY: "true"
+          FASTLANE_HIDE_GITHUB_ISSUES: "true"
         run: bundle exec fastlane sign_profiles
 
       - name: Assemble site
