@@ -48,6 +48,18 @@ scripts/verify.sh             # show signer of each file in dist/
 
 Add a JSON file under `providers/` (its `id` must match the file name), run `swift run generate`, and commit the generated `profiles/` and `site/index.html` together. UUIDs and identifiers are derived from the `id`, so regenerating never changes an existing profile unless its data changed.
 
+## macOS 注意事項 / macOS notes
+
+macOS 26 之後 DNS 設定必須是裝置層級的描述檔，否則安裝時會出現「無法安裝『VPN 服務』承載資料」。這裡的描述檔都帶 `PayloadScope: System`，在 Mac 上安裝時會要求管理者密碼，iOS 與 iPadOS 會忽略這個 key。
+
+Since macOS 26, DNS settings must be installed as a device-level profile, otherwise installation fails with "The 'VPN Service' payload could not be installed". All profiles here carry `PayloadScope: System`, so installing on a Mac asks for an administrator password. iOS and iPadOS ignore the key.
+
+## 憑證更新 / Certificate renewal
+
+簽章憑證過期不影響已經安裝在裝置上的描述檔，只影響過期後新下載的檔案會顯示「未驗證」。更新流程：在 Apple Developer 建一張新的 Developer ID Application 憑證（到期前即可建立，新舊可並存），用 `fastlane match import --type developer_id` 匯入 match 儲存庫，然後手動觸發或等每月排程的 Sign and publish 跑一次，網站上的檔案就會換成新憑證簽的。Sign and publish 需要 `release` Environment 的審核人批准才會發佈。
+
+An expired signing certificate does not affect profiles already installed; only files downloaded after expiry would show as unverified. To renew: create a new Developer ID Application certificate in Apple Developer (allowed before the old one expires, both can coexist), import it with `fastlane match import --type developer_id`, then trigger Sign and publish manually or wait for the monthly schedule. The workflow publishes only after a reviewer approves the `release` environment.
+
 ## 授權 / License
 
 MIT

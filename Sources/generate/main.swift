@@ -142,6 +142,10 @@ func buildProfile(provider: Provider, transport: Transport, config: Config) -> (
         "PayloadDescription": "\(provider.description.combined)\n\n\(transport.longName): \(endpoint)",
         "PayloadOrganization": config.organization,
         "PayloadRemovalDisallowed": false,
+        // macOS 26 and later refuse to install DNS settings as a user-level
+        // profile ("The 'VPN Service' payload could not be installed"), so the
+        // profile has to be device-scoped. iOS and iPadOS ignore this key.
+        "PayloadScope": "System",
         "ConsentText": [
             "default": config.consentText.en,
             "en": config.consentText.en,

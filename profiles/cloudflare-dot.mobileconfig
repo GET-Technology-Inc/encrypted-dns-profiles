@@ -57,6 +57,8 @@ DNS over TLS: cloudflare-dns.com</string>
 	<string>珈特科技股份有限公司 GET Technology Inc.</string>
 	<key>PayloadRemovalDisallowed</key>
 	<false/>
+	<key>PayloadScope</key>
+	<string>System</string>
 	<key>PayloadType</key>
 	<string>Configuration</string>
 	<key>PayloadUUID</key>
