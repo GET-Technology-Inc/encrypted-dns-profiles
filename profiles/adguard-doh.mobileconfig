@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ConsentText</key>
+	<dict>
+		<key>default</key>
+		<string>This profile only changes the DNS resolver used by this device to an encrypted one (DNS over HTTPS / DNS over TLS). It does not install certificates, VPNs, or any management. You can remove it at any time from Settings.</string>
+		<key>en</key>
+		<string>This profile only changes the DNS resolver used by this device to an encrypted one (DNS over HTTPS / DNS over TLS). It does not install certificates, VPNs, or any management. You can remove it at any time from Settings.</string>
+		<key>zh-Hant</key>
+		<string>此描述檔只會把裝置使用的 DNS 解析器改成加密連線（DNS over HTTPS / DNS over TLS），不會安裝憑證、VPN 或任何管理設定，隨時可在「設定」中移除。</string>
+	</dict>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>DNSSettings</key>
+			<dict>
+				<key>DNSProtocol</key>
+				<string>HTTPS</string>
+				<key>ServerAddresses</key>
+				<array>
+					<string>94.140.14.14</string>
+					<string>94.140.15.15</string>
+					<string>2a10:50c0::ad1:ff</string>
+					<string>2a10:50c0::ad2:ff</string>
+				</array>
+				<key>ServerURL</key>
+				<string>https://dns.adguard-dns.com/dns-query</string>
+			</dict>
+			<key>PayloadDescription</key>
+			<string>DNS over HTTPS via https://dns.adguard-dns.com/dns-query</string>
+			<key>PayloadDisplayName</key>
+			<string>DNS over HTTPS: AdGuard DNS</string>
+			<key>PayloadIdentifier</key>
+			<string>tw.com.getinfo.dns.adguard.doh.dnsSettings</string>
+			<key>PayloadType</key>
+			<string>com.apple.dnsSettings.managed</string>
+			<key>PayloadUUID</key>
+			<string>C2E874DB-C1F9-575F-8D5A-817EFD67E34E</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>ProhibitDisablement</key>
+			<false/>
+		</dict>
+	</array>
+	<key>PayloadDescription</key>
+	<string>AdGuard DNS (Default). Blocks ads and trackers at the DNS level.
+AdGuard DNS（預設版），在 DNS 層擋廣告與追蹤器。
+
+DNS over HTTPS: https://dns.adguard-dns.com/dns-query</string>
+	<key>PayloadDisplayName</key>
+	<string>AdGuard DNS (DoH)</string>
+	<key>PayloadIdentifier</key>
+	<string>tw.com.getinfo.dns.adguard.doh</string>
+	<key>PayloadOrganization</key>
+	<string>珈特科技股份有限公司 GET Technology Inc.</string>
+	<key>PayloadRemovalDisallowed</key>
+	<false/>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadUUID</key>
+	<string>4A2972B8-2FF0-5268-990E-87C2DB77A610</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+</dict>
+</plist>

@@ -1,0 +1,17 @@
+# SwiftPM
+.build/
+.swiftpm/
+*.xcodeproj
+Package.resolved
+
+# Signed output is produced by CI, never committed
+dist/
+
+# fastlane
+fastlane/report.xml
+fastlane/README.md
+.bundle/
+vendor/
+
+# macOS
+.DS_Store

@@ -1,0 +1,33 @@
+# fastlane lanes for encrypted-dns-profiles.
+#
+#   bundle exec fastlane sign_profiles
+#
+# Locally the Developer ID identity is expected in the login keychain.
+# On CI, set MATCH_GIT_URL (plus MATCH_PASSWORD and git credentials) and the
+# lane will pull the developer_id certificate with match into a temporary
+# keychain before signing.
+
+default_platform(:mac)
+
+IDENTITY = ENV.fetch("SIGNING_IDENTITY", "Developer ID Application: GET TECHNOLOGY INC. (FAW8H2KWX2)")
+
+platform :mac do
+  desc "Generate profiles, sign them with the Developer ID identity, verify the result"
+  lane :sign_profiles do
+    sh("cd .. && swift run --configuration release generate")
+
+    if ENV["MATCH_GIT_URL"] && !ENV["MATCH_GIT_URL"].empty?
+      setup_ci if is_ci
+      match(
+        type: "developer_id",
+        git_url: ENV["MATCH_GIT_URL"],
+        readonly: true,
+        platform: "macos",
+        skip_provisioning_profiles: true
+      )
+    end
+
+    sh("cd .. && SIGNING_IDENTITY='#{IDENTITY}' scripts/sign.sh profiles dist")
+    sh("cd .. && scripts/verify.sh dist")
+  end
+end

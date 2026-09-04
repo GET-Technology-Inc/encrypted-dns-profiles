@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ConsentText</key>
+	<dict>
+		<key>default</key>
+		<string>This profile only changes the DNS resolver used by this device to an encrypted one (DNS over HTTPS / DNS over TLS). It does not install certificates, VPNs, or any management. You can remove it at any time from Settings.</string>
+		<key>en</key>
+		<string>This profile only changes the DNS resolver used by this device to an encrypted one (DNS over HTTPS / DNS over TLS). It does not install certificates, VPNs, or any management. You can remove it at any time from Settings.</string>
+		<key>zh-Hant</key>
+		<string>此描述檔只會把裝置使用的 DNS 解析器改成加密連線（DNS over HTTPS / DNS over TLS），不會安裝憑證、VPN 或任何管理設定，隨時可在「設定」中移除。</string>
+	</dict>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>DNSSettings</key>
+			<dict>
+				<key>DNSProtocol</key>
+				<string>TLS</string>
+				<key>ServerAddresses</key>
+				<array>
+					<string>1.1.1.1</string>
+					<string>1.0.0.1</string>
+					<string>2606:4700:4700::1111</string>
+					<string>2606:4700:4700::1001</string>
+				</array>
+				<key>ServerName</key>
+				<string>cloudflare-dns.com</string>
+			</dict>
+			<key>PayloadDescription</key>
+			<string>DNS over TLS via cloudflare-dns.com</string>
+			<key>PayloadDisplayName</key>
+			<string>DNS over TLS: Cloudflare 1.1.1.1</string>
+			<key>PayloadIdentifier</key>
+			<string>tw.com.getinfo.dns.cloudflare.dot.dnsSettings</string>
+			<key>PayloadType</key>
+			<string>com.apple.dnsSettings.managed</string>
+			<key>PayloadUUID</key>
+			<string>0E752DD9-4453-5E16-B149-898555D92B9B</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>ProhibitDisablement</key>
+			<false/>
+		</dict>
+	</array>
+	<key>PayloadDescription</key>
+	<string>Cloudflare 1.1.1.1. Privacy-focused resolver, no filtering.
+Cloudflare 1.1.1.1，主打隱私，不做任何過濾。
+
+DNS over TLS: cloudflare-dns.com</string>
+	<key>PayloadDisplayName</key>
+	<string>Cloudflare 1.1.1.1 (DoT)</string>
+	<key>PayloadIdentifier</key>
+	<string>tw.com.getinfo.dns.cloudflare.dot</string>
+	<key>PayloadOrganization</key>
+	<string>珈特科技股份有限公司 GET Technology Inc.</string>
+	<key>PayloadRemovalDisallowed</key>
+	<false/>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadUUID</key>
+	<string>237FD960-F057-5509-A5F6-1DAD1F5417C2</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+</dict>
+</plist>

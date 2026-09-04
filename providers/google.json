@@ -1,0 +1,12 @@
+{
+  "id": "google",
+  "name": "Google Public DNS",
+  "website": "https://developers.google.com/speed/public-dns/docs/secure-transports",
+  "description": {
+    "en": "Google Public DNS. General purpose resolver, no filtering.",
+    "zh-Hant": "Google 公共 DNS，一般用途，不做任何過濾。"
+  },
+  "addresses": ["8.8.8.8", "8.8.4.4", "2001:4860:4860::8888", "2001:4860:4860::8844"],
+  "doh": { "serverURL": "https://dns.google/dns-query" },
+  "dot": { "serverName": "dns.google" }
+}

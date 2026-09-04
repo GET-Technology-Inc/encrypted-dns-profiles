@@ -1,0 +1,33 @@
+name: CI
+
+# Runs on every pull request and on branches other than main.
+# No secrets are used here, so it is safe for pull requests from forks.
+
+on:
+  pull_request:
+  push:
+    branches-ignore: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  generate:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate profiles
+        run: swift run --configuration release generate
+
+      - name: Lint profiles
+        run: |
+          for f in profiles/*.mobileconfig; do plutil -lint -s "$f"; done
+
+      - name: Committed output must match generator output
+        run: |
+          git add -N profiles site
+          if ! git diff --exit-code -- profiles site; then
+            echo "::error::profiles/ or site/ is out of date. Run 'swift run generate' and commit the result."
+            exit 1
+          fi

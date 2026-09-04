@@ -1,0 +1,10 @@
+{
+  "organization": "珈特科技股份有限公司 GET Technology Inc.",
+  "identifierPrefix": "tw.com.getinfo.dns",
+  "siteTitle": "Encrypted DNS Profiles",
+  "siteURL": "https://github.com/GET-Technology-Inc/encrypted-dns-profiles",
+  "consentText": {
+    "en": "This profile only changes the DNS resolver used by this device to an encrypted one (DNS over HTTPS / DNS over TLS). It does not install certificates, VPNs, or any management. You can remove it at any time from Settings.",
+    "zh-Hant": "此描述檔只會把裝置使用的 DNS 解析器改成加密連線（DNS over HTTPS / DNS over TLS），不會安裝憑證、VPN 或任何管理設定，隨時可在「設定」中移除。"
+  }
+}

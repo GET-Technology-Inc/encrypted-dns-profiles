@@ -1,0 +1,76 @@
+name: Sign and publish
+
+# Signs every profile with the Developer ID certificate and publishes the
+# result to GitHub Pages. Only runs from main, on a schedule, or by hand, and
+# the signing job sits behind the "release" environment so a reviewer has to
+# approve it before any secret is exposed.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - providers/**
+      - config.json
+      - Sources/**
+      - scripts/**
+      - fastlane/**
+      - Gemfile*
+      - .github/workflows/release.yml
+  schedule:
+    - cron: "0 3 1 * *"   # monthly, catches an expired certificate early
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  sign:
+    runs-on: macos-15
+    environment: release
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+
+      - name: Generate, sign and verify
+        env:
+          # Repository variable: git URL of the match storage that holds ONLY the
+          # developer_id certificate (keep it separate from app signing).
+          MATCH_GIT_URL: ${{ vars.MATCH_GIT_URL }}
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          # One of the two, depending on how the match repo is reached:
+          MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
+          MATCH_GIT_PRIVATE_KEY: ${{ secrets.MATCH_GIT_PRIVATE_KEY }}
+          SIGNING_IDENTITY: ${{ vars.SIGNING_IDENTITY }}
+        run: bundle exec fastlane sign_profiles
+
+      - name: Assemble site
+        run: |
+          mkdir -p public
+          cp site/index.html public/
+          cp dist/*.mobileconfig public/
+          touch public/.nojekyll
+          ls -la public
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+  deploy:
+    needs: sign
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

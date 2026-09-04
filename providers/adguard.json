@@ -1,0 +1,12 @@
+{
+  "id": "adguard",
+  "name": "AdGuard DNS",
+  "website": "https://adguard-dns.io/kb/general/dns-providers/",
+  "description": {
+    "en": "AdGuard DNS (Default). Blocks ads and trackers at the DNS level.",
+    "zh-Hant": "AdGuard DNS（預設版），在 DNS 層擋廣告與追蹤器。"
+  },
+  "addresses": ["94.140.14.14", "94.140.15.15", "2a10:50c0::ad1:ff", "2a10:50c0::ad2:ff"],
+  "doh": { "serverURL": "https://dns.adguard-dns.com/dns-query" },
+  "dot": { "serverName": "dns.adguard-dns.com" }
+}
