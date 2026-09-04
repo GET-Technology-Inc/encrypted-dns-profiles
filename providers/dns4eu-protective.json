@@ -1,0 +1,21 @@
+{
+  "id": "dns4eu-protective",
+  "name": "DNS4EU Protective",
+  "category": "security",
+  "order": 30,
+  "website": "https://www.joindns4.eu/for-public",
+  "description": {
+    "en": "DNS4EU, the European Union's public resolver. Blocks malware and phishing domains.",
+    "zh-Hant": "DNS4EU，歐盟出資的公共 DNS，會擋惡意程式與釣魚網域。"
+  },
+  "addresses": [
+    "86.54.11.1",
+    "2a13:1001::86:54:11:1"
+  ],
+  "doh": {
+    "serverURL": "https://protective.joindns4.eu/dns-query"
+  },
+  "dot": {
+    "serverName": "protective.joindns4.eu"
+  }
+}

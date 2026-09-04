@@ -1,0 +1,23 @@
+{
+  "id": "cloudflare-family",
+  "name": "Cloudflare 1.1.1.3",
+  "category": "family",
+  "order": 10,
+  "website": "https://developers.cloudflare.com/1.1.1.1/setup/",
+  "description": {
+    "en": "Cloudflare 1.1.1.1 for Families. Blocks malware, phishing and adult content.",
+    "zh-Hant": "Cloudflare 1.1.1.3，擋惡意程式、釣魚與成人內容。"
+  },
+  "addresses": [
+    "1.1.1.3",
+    "1.0.0.3",
+    "2606:4700:4700::1113",
+    "2606:4700:4700::1003"
+  ],
+  "doh": {
+    "serverURL": "https://family.cloudflare-dns.com/dns-query"
+  },
+  "dot": {
+    "serverName": "family.cloudflare-dns.com"
+  }
+}

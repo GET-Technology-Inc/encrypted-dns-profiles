@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ConsentText</key>
+	<dict>
+		<key>default</key>
+		<string>Quad9. Swiss non-profit resolver that blocks known malware and phishing domains.
+
+This profile only changes the DNS resolver used by this device to an encrypted one (DNS over HTTPS / DNS over TLS). It does not install certificates, VPNs, or any management. You can remove it at any time from Settings.</string>
+		<key>en</key>
+		<string>Quad9. Swiss non-profit resolver that blocks known malware and phishing domains.
+
+This profile only changes the DNS resolver used by this device to an encrypted one (DNS over HTTPS / DNS over TLS). It does not install certificates, VPNs, or any management. You can remove it at any time from Settings.</string>
+		<key>zh-Hant</key>
+		<string>Quad9，瑞士非營利組織經營，會擋已知的惡意程式與釣魚網域。
+
+此描述檔只會把裝置使用的 DNS 解析器改成加密連線（DNS over HTTPS / DNS over TLS），不會安裝憑證、VPN 或任何管理設定，隨時可在「設定」中移除。</string>
+	</dict>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>DNSSettings</key>
+			<dict>
+				<key>DNSProtocol</key>
+				<string>TLS</string>
+				<key>ServerAddresses</key>
+				<array>
+					<string>9.9.9.9</string>
+					<string>149.112.112.112</string>
+					<string>2620:fe::fe</string>
+					<string>2620:fe::9</string>
+				</array>
+				<key>ServerName</key>
+				<string>dns.quad9.net</string>
+			</dict>
+			<key>PayloadDescription</key>
+			<string>DNS over TLS · dns.quad9.net</string>
+			<key>PayloadDisplayName</key>
+			<string>DNS over TLS: Quad9</string>
+			<key>PayloadIdentifier</key>
+			<string>tw.com.getinfo.dns.quad9.dot.dnsSettings</string>
+			<key>PayloadType</key>
+			<string>com.apple.dnsSettings.managed</string>
+			<key>PayloadUUID</key>
+			<string>678562DB-E2DD-521F-AC04-482718D1B7A8</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>ProhibitDisablement</key>
+			<false/>
+		</dict>
+	</array>
+	<key>PayloadDescription</key>
+	<string>DNS over TLS · dns.quad9.net</string>
+	<key>PayloadDisplayName</key>
+	<string>Quad9 (DoT)</string>
+	<key>PayloadIdentifier</key>
+	<string>tw.com.getinfo.dns.quad9.dot</string>
+	<key>PayloadOrganization</key>
+	<string>珈特科技股份有限公司 GET Technology Inc.</string>
+	<key>PayloadRemovalDisallowed</key>
+	<false/>
+	<key>PayloadScope</key>
+	<string>System</string>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadUUID</key>
+	<string>7BA74C28-E14C-548C-88AC-49A7BD303864</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+</dict>
+</plist>

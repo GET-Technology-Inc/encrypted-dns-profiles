@@ -1,0 +1,23 @@
+{
+  "id": "cloudflare-security",
+  "name": "Cloudflare 1.1.1.2",
+  "category": "security",
+  "order": 20,
+  "website": "https://developers.cloudflare.com/1.1.1.1/setup/",
+  "description": {
+    "en": "Cloudflare 1.1.1.1 for Families, security only. Blocks malware and phishing domains.",
+    "zh-Hant": "Cloudflare 1.1.1.2，只擋惡意程式與釣魚網域，其餘不過濾。"
+  },
+  "addresses": [
+    "1.1.1.2",
+    "1.0.0.2",
+    "2606:4700:4700::1112",
+    "2606:4700:4700::1002"
+  ],
+  "doh": {
+    "serverURL": "https://security.cloudflare-dns.com/dns-query"
+  },
+  "dot": {
+    "serverName": "security.cloudflare-dns.com"
+  }
+}

@@ -23,6 +23,7 @@ private struct SiteStrings {
     let footnote: String
     let source: String
     let providerDescription: (Provider) -> String
+    let categories: [Category: (title: String, blurb: String)]
 
     static let zhHant = SiteStrings(
         lang: "zh-Hant",
@@ -38,7 +39,13 @@ private struct SiteStrings {
         ],
         footnote: "描述檔只設定 DNS 解析器，不會安裝憑證、VPN 或任何管理設定。",
         source: "原始碼與產生流程",
-        providerDescription: { $0.description.zhHant }
+        providerDescription: { $0.description.zhHant },
+        categories: [
+            .general: ("一般用途", "只加密 DNS 查詢，不過濾任何內容。不知道選哪個就選這一類。"),
+            .security: ("安全防護", "額外擋掉已知的惡意程式與釣魚網域。"),
+            .ads: ("擋廣告", "擋廣告與追蹤器，少數網站可能因此異常。"),
+            .family: ("家庭保護", "擋成人內容，適合小孩使用的裝置。"),
+        ]
     )
 
     static let en = SiteStrings(
@@ -55,7 +62,13 @@ private struct SiteStrings {
         ],
         footnote: "These profiles only set the DNS resolver. No certificates, VPNs or management payloads are installed.",
         source: "Source and build pipeline",
-        providerDescription: { $0.description.en }
+        providerDescription: { $0.description.en },
+        categories: [
+            .general: ("General", "Encrypts DNS queries, filters nothing. Pick one of these if unsure."),
+            .security: ("Security", "Also blocks known malware and phishing domains."),
+            .ads: ("Ad blocking", "Blocks ads and trackers; a few sites may misbehave."),
+            .family: ("Family", "Blocks adult content, meant for children's devices."),
+        ]
     )
 }
 
@@ -64,8 +77,17 @@ private func renderBlock(_ t: SiteStrings, config: Config, profiles: [GeneratedP
     let order = profiles.map { $0.provider.id }.reduce(into: [String]()) { if !$0.contains($1) { $0.append($1) } }
 
     var cards = ""
+    var currentCategory: Category? = nil
     for id in order {
         guard let items = grouped[id], let p = items.first?.provider else { continue }
+        if p.category != currentCategory, let c = t.categories[p.category] {
+            currentCategory = p.category
+            cards += """
+                <h2 class="cat">\(escape(c.title))</h2>
+                <p class="blurb">\(escape(c.blurb))</p>
+
+            """
+        }
         let links = items.map { item in
             """
                   <a class="btn" href="\(escape(item.fileName))" download>\(escape(item.transport.label)) · \(escape(item.transport.longName))<small>\(escape(item.endpoint))</small></a>
@@ -73,7 +95,7 @@ private func renderBlock(_ t: SiteStrings, config: Config, profiles: [GeneratedP
         }.joined(separator: "\n")
         cards += """
             <section class="card">
-              <h2>\(escape(p.name))</h2>
+              <h3>\(escape(p.name))</h3>
               <p>\(escape(t.providerDescription(p)))</p>
               <p class="addr">\(escape(p.addresses.joined(separator: " · ")))</p>
               <div class="links">
@@ -127,7 +149,9 @@ func buildIndex(config: Config, profiles: [GeneratedProfile]) -> String {
       .switch button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
       .lead { color: var(--muted); margin: .5rem 0 1rem; }
       .card { background: var(--card); border-radius: 14px; padding: 1.25rem 1.25rem 1rem; margin: 1rem 0; }
-      .card h2 { margin: 0 0 .25rem; font-size: 1.25rem; }
+      .cat { font-size: 1.35rem; margin: 2rem 0 0; }
+      .blurb { color: var(--muted); margin: .15rem 0 .5rem; }
+      .card h3 { margin: 0 0 .25rem; font-size: 1.15rem; }
       .card p { margin: .25rem 0; }
       .addr, .src, .note { color: var(--muted); font-size: .9rem; }
       .addr { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }

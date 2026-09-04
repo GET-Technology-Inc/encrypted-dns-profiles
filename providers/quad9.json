@@ -1,0 +1,23 @@
+{
+  "id": "quad9",
+  "name": "Quad9",
+  "category": "security",
+  "order": 10,
+  "website": "https://quad9.net/service/service-addresses-and-features/",
+  "description": {
+    "en": "Quad9. Swiss non-profit resolver that blocks known malware and phishing domains.",
+    "zh-Hant": "Quad9，瑞士非營利組織經營，會擋已知的惡意程式與釣魚網域。"
+  },
+  "addresses": [
+    "9.9.9.9",
+    "149.112.112.112",
+    "2620:fe::fe",
+    "2620:fe::9"
+  ],
+  "doh": {
+    "serverURL": "https://dns.quad9.net/dns-query"
+  },
+  "dot": {
+    "serverName": "dns.quad9.net"
+  }
+}

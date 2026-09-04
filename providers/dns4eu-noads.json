@@ -1,0 +1,21 @@
+{
+  "id": "dns4eu-noads",
+  "name": "DNS4EU Ad Blocking",
+  "category": "ads",
+  "order": 20,
+  "website": "https://www.joindns4.eu/for-public",
+  "description": {
+    "en": "DNS4EU with ad blocking. Blocks malware, phishing, ads and trackers.",
+    "zh-Hant": "DNS4EU 擋廣告版，同時擋惡意程式、釣魚、廣告與追蹤器。"
+  },
+  "addresses": [
+    "86.54.11.13",
+    "2a13:1001::86:54:11:13"
+  ],
+  "doh": {
+    "serverURL": "https://noads.joindns4.eu/dns-query"
+  },
+  "dot": {
+    "serverName": "noads.joindns4.eu"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "id": "twnic",
+  "name": "TWNIC Quad101",
+  "category": "general",
+  "order": 30,
+  "website": "https://twnic-public-dns.twnic.tw/index_en.html",
+  "description": {
+    "en": "Quad101 by TWNIC, the Taiwan Network Information Center. Resolvers located in Taiwan, no filtering.",
+    "zh-Hant": "台灣網路資訊中心（TWNIC）的 Quad101，主機在台灣，不做任何過濾。"
+  },
+  "addresses": [
+    "101.101.101.101",
+    "101.102.103.104",
+    "2001:de4::101",
+    "2001:de4::102"
+  ],
+  "doh": {
+    "serverURL": "https://dns.twnic.tw/dns-query"
+  },
+  "dot": {
+    "serverName": "dns.twnic.tw"
+  }
+}

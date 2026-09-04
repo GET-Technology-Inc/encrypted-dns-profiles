@@ -12,11 +12,19 @@ Apple has supported DoH and DoT through configuration profiles since iOS 14 and 
 
 ## Providers
 
-| Provider | DoH | DoT |
-| --- | --- | --- |
-| Google Public DNS | `https://dns.google/dns-query` | `dns.google` |
-| Cloudflare 1.1.1.1 | `https://cloudflare-dns.com/dns-query` | `cloudflare-dns.com` |
-| AdGuard DNS | `https://dns.adguard-dns.com/dns-query` | `dns.adguard-dns.com` |
+| Provider | Category | DoH | DoT |
+| --- | --- | --- | --- |
+| Google Public DNS | General | `https://dns.google/dns-query` | `dns.google` |
+| Cloudflare 1.1.1.1 | General | `https://cloudflare-dns.com/dns-query` | `cloudflare-dns.com` |
+| TWNIC Quad101 | General | `https://dns.twnic.tw/dns-query` | `dns.twnic.tw` |
+| Quad9 | Security | `https://dns.quad9.net/dns-query` | `dns.quad9.net` |
+| Cloudflare 1.1.1.2 | Security | `https://security.cloudflare-dns.com/dns-query` | `security.cloudflare-dns.com` |
+| DNS4EU Protective | Security | `https://protective.joindns4.eu/dns-query` | `protective.joindns4.eu` |
+| AdGuard DNS | Ad blocking | `https://dns.adguard-dns.com/dns-query` | `dns.adguard-dns.com` |
+| DNS4EU Ad Blocking | Ad blocking | `https://noads.joindns4.eu/dns-query` | `noads.joindns4.eu` |
+| Cloudflare 1.1.1.3 | Family | `https://family.cloudflare-dns.com/dns-query` | `family.cloudflare-dns.com` |
+| AdGuard DNS Family | Family | `https://family.adguard-dns.com/dns-query` | `family.adguard-dns.com` |
+| DNS4EU Child Protection | Family | `https://child.joindns4.eu/dns-query` | `child.joindns4.eu` |
 
 The source of every value is the `website` field of the matching `providers/*.json`.
 
@@ -44,7 +52,7 @@ scripts/verify.sh             # show the signer of each file in dist/
 
 ## Adding a provider
 
-Add a JSON file under `providers/` (its `id` must match the file name), run `swift run generate`, and commit the generated `profiles/` and `site/index.html` together. UUIDs and identifiers are derived from the `id`, so regenerating never changes an existing profile unless its data changed, and reinstalling is treated as an update rather than a second profile.
+Add a JSON file under `providers/` (its `id` must match the file name and `category` is one of general, security, ads, family), run `swift run generate`, and commit the generated `profiles/` and `site/index.html` together. UUIDs and identifiers are derived from the `id`, so regenerating never changes an existing profile unless its data changed, and reinstalling is treated as an update rather than a second profile.
 
 ## Localization
 

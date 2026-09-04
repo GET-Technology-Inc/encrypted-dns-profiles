@@ -12,11 +12,19 @@ Apple 從 iOS 14 與 macOS 11 開始支援用描述檔設定 DoH 與 DoT，但�
 
 ## 支援的供應商
 
-| 供應商 | DoH | DoT |
-| --- | --- | --- |
-| Google Public DNS | `https://dns.google/dns-query` | `dns.google` |
-| Cloudflare 1.1.1.1 | `https://cloudflare-dns.com/dns-query` | `cloudflare-dns.com` |
-| AdGuard DNS | `https://dns.adguard-dns.com/dns-query` | `dns.adguard-dns.com` |
+| 供應商 | 分類 | DoH | DoT |
+| --- | --- | --- | --- |
+| Google Public DNS | 一般用途 | `https://dns.google/dns-query` | `dns.google` |
+| Cloudflare 1.1.1.1 | 一般用途 | `https://cloudflare-dns.com/dns-query` | `cloudflare-dns.com` |
+| TWNIC Quad101 | 一般用途 | `https://dns.twnic.tw/dns-query` | `dns.twnic.tw` |
+| Quad9 | 安全防護 | `https://dns.quad9.net/dns-query` | `dns.quad9.net` |
+| Cloudflare 1.1.1.2 | 安全防護 | `https://security.cloudflare-dns.com/dns-query` | `security.cloudflare-dns.com` |
+| DNS4EU Protective | 安全防護 | `https://protective.joindns4.eu/dns-query` | `protective.joindns4.eu` |
+| AdGuard DNS | 擋廣告 | `https://dns.adguard-dns.com/dns-query` | `dns.adguard-dns.com` |
+| DNS4EU Ad Blocking | 擋廣告 | `https://noads.joindns4.eu/dns-query` | `noads.joindns4.eu` |
+| Cloudflare 1.1.1.3 | 家庭保護 | `https://family.cloudflare-dns.com/dns-query` | `family.cloudflare-dns.com` |
+| AdGuard DNS Family | 家庭保護 | `https://family.adguard-dns.com/dns-query` | `family.adguard-dns.com` |
+| DNS4EU Child Protection | 家庭保護 | `https://child.joindns4.eu/dns-query` | `child.joindns4.eu` |
 
 每個設定值的來源都寫在對應 `providers/*.json` 的 `website` 欄位。
 
@@ -44,7 +52,7 @@ scripts/verify.sh             # 顯示 dist/ 每個檔案的簽署者
 
 ## 新增供應商
 
-在 `providers/` 加一個 JSON，`id` 要跟檔名一樣，跑 `swift run generate`，把產生的 `profiles/` 與 `site/index.html` 一起提交。描述檔的 UUID 與識別碼由 `id` 決定，重新產生不會改變既有描述檔，使用者重新安裝時會被視為更新而不是另一份描述檔。
+在 `providers/` 加一個 JSON，`id` 要跟檔名一樣，`category` 填 general、security、ads 或 family，跑 `swift run generate`，把產生的 `profiles/` 與 `site/index.html` 一起提交。描述檔的 UUID 與識別碼由 `id` 決定，重新產生不會改變既有描述檔，使用者重新安裝時會被視為更新而不是另一份描述檔。
 
 ## 語言
 

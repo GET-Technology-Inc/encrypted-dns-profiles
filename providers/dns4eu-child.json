@@ -1,0 +1,21 @@
+{
+  "id": "dns4eu-child",
+  "name": "DNS4EU Child Protection",
+  "category": "family",
+  "order": 30,
+  "website": "https://www.joindns4.eu/for-public",
+  "description": {
+    "en": "DNS4EU with child protection. Blocks malware, phishing and adult content.",
+    "zh-Hant": "DNS4EU 兒童保護版，擋惡意程式、釣魚與成人內容。"
+  },
+  "addresses": [
+    "86.54.11.12",
+    "2a13:1001::86:54:11:12"
+  ],
+  "doh": {
+    "serverURL": "https://child.joindns4.eu/dns-query"
+  },
+  "dot": {
+    "serverName": "child.joindns4.eu"
+  }
+}

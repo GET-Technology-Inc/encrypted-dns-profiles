@@ -17,7 +17,9 @@
   .switch button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
   .lead { color: var(--muted); margin: .5rem 0 1rem; }
   .card { background: var(--card); border-radius: 14px; padding: 1.25rem 1.25rem 1rem; margin: 1rem 0; }
-  .card h2 { margin: 0 0 .25rem; font-size: 1.25rem; }
+  .cat { font-size: 1.35rem; margin: 2rem 0 0; }
+  .blurb { color: var(--muted); margin: .15rem 0 .5rem; }
+  .card h3 { margin: 0 0 .25rem; font-size: 1.15rem; }
   .card p { margin: .25rem 0; }
   .addr, .src, .note { color: var(--muted); font-size: .9rem; }
   .addr { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
@@ -44,28 +46,10 @@
 <div class="lang" lang="zh-Hant" data-lang="zh-Hant" hidden>
   <p class="lead">加密 DNS 描述檔（DNS over HTTPS、DNS over TLS）。所有描述檔皆以 Apple Developer ID 簽章，安裝時會顯示「已驗證」。<br>適用 iOS 14、iPadOS 14、macOS 11 以上。</p>
 
+    <h2 class="cat">一般用途</h2>
+    <p class="blurb">只加密 DNS 查詢，不過濾任何內容。不知道選哪個就選這一類。</p>
     <section class="card">
-      <h2>AdGuard DNS</h2>
-      <p>AdGuard DNS（預設版），在 DNS 層擋廣告與追蹤器。</p>
-      <p class="addr">94.140.14.14 · 94.140.15.15 · 2a10:50c0::ad1:ff · 2a10:50c0::ad2:ff</p>
-      <div class="links">
-      <a class="btn" href="adguard-doh.mobileconfig" download>DoH · DNS over HTTPS<small>https://dns.adguard-dns.com/dns-query</small></a>
-      <a class="btn" href="adguard-dot.mobileconfig" download>DoT · DNS over TLS<small>dns.adguard-dns.com</small></a>
-      </div>
-      <p class="src"><a href="https://adguard-dns.io/kb/general/dns-providers/" rel="noopener">官方文件</a></p>
-    </section>
-    <section class="card">
-      <h2>Cloudflare 1.1.1.1</h2>
-      <p>Cloudflare 1.1.1.1，主打隱私，不做任何過濾。</p>
-      <p class="addr">1.1.1.1 · 1.0.0.1 · 2606:4700:4700::1111 · 2606:4700:4700::1001</p>
-      <div class="links">
-      <a class="btn" href="cloudflare-doh.mobileconfig" download>DoH · DNS over HTTPS<small>https://cloudflare-dns.com/dns-query</small></a>
-      <a class="btn" href="cloudflare-dot.mobileconfig" download>DoT · DNS over TLS<small>cloudflare-dns.com</small></a>
-      </div>
-      <p class="src"><a href="https://developers.cloudflare.com/1.1.1.1/encryption/" rel="noopener">官方文件</a></p>
-    </section>
-    <section class="card">
-      <h2>Google Public DNS</h2>
+      <h3>Google Public DNS</h3>
       <p>Google 公共 DNS，一般用途，不做任何過濾。</p>
       <p class="addr">8.8.8.8 · 8.8.4.4 · 2001:4860:4860::8888 · 2001:4860:4860::8844</p>
       <div class="links">
@@ -73,6 +57,112 @@
       <a class="btn" href="google-dot.mobileconfig" download>DoT · DNS over TLS<small>dns.google</small></a>
       </div>
       <p class="src"><a href="https://developers.google.com/speed/public-dns/docs/secure-transports" rel="noopener">官方文件</a></p>
+    </section>
+    <section class="card">
+      <h3>Cloudflare 1.1.1.1</h3>
+      <p>Cloudflare 1.1.1.1，主打隱私，不做任何過濾。</p>
+      <p class="addr">1.1.1.1 · 1.0.0.1 · 2606:4700:4700::1111 · 2606:4700:4700::1001</p>
+      <div class="links">
+      <a class="btn" href="cloudflare-doh.mobileconfig" download>DoH · DNS over HTTPS<small>https://cloudflare-dns.com/dns-query</small></a>
+      <a class="btn" href="cloudflare-dot.mobileconfig" download>DoT · DNS over TLS<small>cloudflare-dns.com</small></a>
+      </div>
+      <p class="src"><a href="https://developers.cloudflare.com/1.1.1.1/setup/" rel="noopener">官方文件</a></p>
+    </section>
+    <section class="card">
+      <h3>TWNIC Quad101</h3>
+      <p>台灣網路資訊中心（TWNIC）的 Quad101，主機在台灣，不做任何過濾。</p>
+      <p class="addr">101.101.101.101 · 101.102.103.104 · 2001:de4::101 · 2001:de4::102</p>
+      <div class="links">
+      <a class="btn" href="twnic-doh.mobileconfig" download>DoH · DNS over HTTPS<small>https://dns.twnic.tw/dns-query</small></a>
+      <a class="btn" href="twnic-dot.mobileconfig" download>DoT · DNS over TLS<small>dns.twnic.tw</small></a>
+      </div>
+      <p class="src"><a href="https://twnic-public-dns.twnic.tw/index_en.html" rel="noopener">官方文件</a></p>
+    </section>
+    <h2 class="cat">安全防護</h2>
+    <p class="blurb">額外擋掉已知的惡意程式與釣魚網域。</p>
+    <section class="card">
+      <h3>Quad9</h3>
+      <p>Quad9，瑞士非營利組織經營，會擋已知的惡意程式與釣魚網域。</p>
+      <p class="addr">9.9.9.9 · 149.112.112.112 · 2620:fe::fe · 2620:fe::9</p>
+      <div class="links">
+      <a class="btn" href="quad9-doh.mobileconfig" download>DoH · DNS over HTTPS<small>https://dns.quad9.net/dns-query</small></a>
+      <a class="btn" href="quad9-dot.mobileconfig" download>DoT · DNS over TLS<small>dns.quad9.net</small></a>
+      </div>
+      <p class="src"><a href="https://quad9.net/service/service-addresses-and-features/" rel="noopener">官方文件</a></p>
+    </section>
+    <section class="card">
+      <h3>Cloudflare 1.1.1.2</h3>
+      <p>Cloudflare 1.1.1.2，只擋惡意程式與釣魚網域，其餘不過濾。</p>
+      <p class="addr">1.1.1.2 · 1.0.0.2 · 2606:4700:4700::1112 · 2606:4700:4700::1002</p>
+      <div class="links">
+      <a class="btn" href="cloudflare-security-doh.mobileconfig" download>DoH · DNS over HTTPS<small>https://security.cloudflare-dns.com/dns-query</small></a>
+      <a class="btn" href="cloudflare-security-dot.mobileconfig" download>DoT · DNS over TLS<small>security.cloudflare-dns.com</small></a>
+      </div>
+      <p class="src"><a href="https://developers.cloudflare.com/1.1.1.1/setup/" rel="noopener">官方文件</a></p>
+    </section>
+    <section class="card">
+      <h3>DNS4EU Protective</h3>
+      <p>DNS4EU，歐盟出資的公共 DNS，會擋惡意程式與釣魚網域。</p>
+      <p class="addr">86.54.11.1 · 2a13:1001::86:54:11:1</p>
+      <div class="links">
+      <a class="btn" href="dns4eu-protective-doh.mobileconfig" download>DoH · DNS over HTTPS<small>https://protective.joindns4.eu/dns-query</small></a>
+      <a class="btn" href="dns4eu-protective-dot.mobileconfig" download>DoT · DNS over TLS<small>protective.joindns4.eu</small></a>
+      </div>
+      <p class="src"><a href="https://www.joindns4.eu/for-public" rel="noopener">官方文件</a></p>
+    </section>
+    <h2 class="cat">擋廣告</h2>
+    <p class="blurb">擋廣告與追蹤器，少數網站可能因此異常。</p>
+    <section class="card">
+      <h3>AdGuard DNS</h3>
+      <p>AdGuard DNS（預設版），在 DNS 層擋廣告與追蹤器。</p>
+      <p class="addr">94.140.14.14 · 94.140.15.15 · 2a10:50c0::ad1:ff · 2a10:50c0::ad2:ff</p>
+      <div class="links">
+      <a class="btn" href="adguard-doh.mobileconfig" download>DoH · DNS over HTTPS<small>https://dns.adguard-dns.com/dns-query</small></a>
+      <a class="btn" href="adguard-dot.mobileconfig" download>DoT · DNS over TLS<small>dns.adguard-dns.com</small></a>
+      </div>
+      <p class="src"><a href="https://adguard-dns.io/en/public-dns.html" rel="noopener">官方文件</a></p>
+    </section>
+    <section class="card">
+      <h3>DNS4EU Ad Blocking</h3>
+      <p>DNS4EU 擋廣告版，同時擋惡意程式、釣魚、廣告與追蹤器。</p>
+      <p class="addr">86.54.11.13 · 2a13:1001::86:54:11:13</p>
+      <div class="links">
+      <a class="btn" href="dns4eu-noads-doh.mobileconfig" download>DoH · DNS over HTTPS<small>https://noads.joindns4.eu/dns-query</small></a>
+      <a class="btn" href="dns4eu-noads-dot.mobileconfig" download>DoT · DNS over TLS<small>noads.joindns4.eu</small></a>
+      </div>
+      <p class="src"><a href="https://www.joindns4.eu/for-public" rel="noopener">官方文件</a></p>
+    </section>
+    <h2 class="cat">家庭保護</h2>
+    <p class="blurb">擋成人內容，適合小孩使用的裝置。</p>
+    <section class="card">
+      <h3>Cloudflare 1.1.1.3</h3>
+      <p>Cloudflare 1.1.1.3，擋惡意程式、釣魚與成人內容。</p>
+      <p class="addr">1.1.1.3 · 1.0.0.3 · 2606:4700:4700::1113 · 2606:4700:4700::1003</p>
+      <div class="links">
+      <a class="btn" href="cloudflare-family-doh.mobileconfig" download>DoH · DNS over HTTPS<small>https://family.cloudflare-dns.com/dns-query</small></a>
+      <a class="btn" href="cloudflare-family-dot.mobileconfig" download>DoT · DNS over TLS<small>family.cloudflare-dns.com</small></a>
+      </div>
+      <p class="src"><a href="https://developers.cloudflare.com/1.1.1.1/setup/" rel="noopener">官方文件</a></p>
+    </section>
+    <section class="card">
+      <h3>AdGuard DNS Family</h3>
+      <p>AdGuard DNS 家庭保護版，擋廣告、追蹤器與成人內容，並開啟安全搜尋。</p>
+      <p class="addr">94.140.14.15 · 94.140.15.16 · 2a10:50c0::bad1:ff · 2a10:50c0::bad2:ff</p>
+      <div class="links">
+      <a class="btn" href="adguard-family-doh.mobileconfig" download>DoH · DNS over HTTPS<small>https://family.adguard-dns.com/dns-query</small></a>
+      <a class="btn" href="adguard-family-dot.mobileconfig" download>DoT · DNS over TLS<small>family.adguard-dns.com</small></a>
+      </div>
+      <p class="src"><a href="https://adguard-dns.io/en/public-dns.html" rel="noopener">官方文件</a></p>
+    </section>
+    <section class="card">
+      <h3>DNS4EU Child Protection</h3>
+      <p>DNS4EU 兒童保護版，擋惡意程式、釣魚與成人內容。</p>
+      <p class="addr">86.54.11.12 · 2a13:1001::86:54:11:12</p>
+      <div class="links">
+      <a class="btn" href="dns4eu-child-doh.mobileconfig" download>DoH · DNS over HTTPS<small>https://child.joindns4.eu/dns-query</small></a>
+      <a class="btn" href="dns4eu-child-dot.mobileconfig" download>DoT · DNS over TLS<small>child.joindns4.eu</small></a>
+      </div>
+      <p class="src"><a href="https://www.joindns4.eu/for-public" rel="noopener">官方文件</a></p>
     </section>
 
   <section class="howto">
@@ -90,28 +180,10 @@
 <div class="lang" lang="en" data-lang="en" hidden>
   <p class="lead">Configuration profiles for encrypted DNS (DNS over HTTPS and DNS over TLS). Every profile is signed with an Apple Developer ID and shows as Verified on install.<br>Requires iOS 14, iPadOS 14 or macOS 11 and later.</p>
 
+    <h2 class="cat">General</h2>
+    <p class="blurb">Encrypts DNS queries, filters nothing. Pick one of these if unsure.</p>
     <section class="card">
-      <h2>AdGuard DNS</h2>
-      <p>AdGuard DNS (Default). Blocks ads and trackers at the DNS level.</p>
-      <p class="addr">94.140.14.14 · 94.140.15.15 · 2a10:50c0::ad1:ff · 2a10:50c0::ad2:ff</p>
-      <div class="links">
-      <a class="btn" href="adguard-doh.mobileconfig" download>DoH · DNS over HTTPS<small>https://dns.adguard-dns.com/dns-query</small></a>
-      <a class="btn" href="adguard-dot.mobileconfig" download>DoT · DNS over TLS<small>dns.adguard-dns.com</small></a>
-      </div>
-      <p class="src"><a href="https://adguard-dns.io/kb/general/dns-providers/" rel="noopener">Official documentation</a></p>
-    </section>
-    <section class="card">
-      <h2>Cloudflare 1.1.1.1</h2>
-      <p>Cloudflare 1.1.1.1. Privacy-focused resolver, no filtering.</p>
-      <p class="addr">1.1.1.1 · 1.0.0.1 · 2606:4700:4700::1111 · 2606:4700:4700::1001</p>
-      <div class="links">
-      <a class="btn" href="cloudflare-doh.mobileconfig" download>DoH · DNS over HTTPS<small>https://cloudflare-dns.com/dns-query</small></a>
-      <a class="btn" href="cloudflare-dot.mobileconfig" download>DoT · DNS over TLS<small>cloudflare-dns.com</small></a>
-      </div>
-      <p class="src"><a href="https://developers.cloudflare.com/1.1.1.1/encryption/" rel="noopener">Official documentation</a></p>
-    </section>
-    <section class="card">
-      <h2>Google Public DNS</h2>
+      <h3>Google Public DNS</h3>
       <p>Google Public DNS. General purpose resolver, no filtering.</p>
       <p class="addr">8.8.8.8 · 8.8.4.4 · 2001:4860:4860::8888 · 2001:4860:4860::8844</p>
       <div class="links">
@@ -119,6 +191,112 @@
       <a class="btn" href="google-dot.mobileconfig" download>DoT · DNS over TLS<small>dns.google</small></a>
       </div>
       <p class="src"><a href="https://developers.google.com/speed/public-dns/docs/secure-transports" rel="noopener">Official documentation</a></p>
+    </section>
+    <section class="card">
+      <h3>Cloudflare 1.1.1.1</h3>
+      <p>Cloudflare 1.1.1.1. Privacy-focused resolver, no filtering.</p>
+      <p class="addr">1.1.1.1 · 1.0.0.1 · 2606:4700:4700::1111 · 2606:4700:4700::1001</p>
+      <div class="links">
+      <a class="btn" href="cloudflare-doh.mobileconfig" download>DoH · DNS over HTTPS<small>https://cloudflare-dns.com/dns-query</small></a>
+      <a class="btn" href="cloudflare-dot.mobileconfig" download>DoT · DNS over TLS<small>cloudflare-dns.com</small></a>
+      </div>
+      <p class="src"><a href="https://developers.cloudflare.com/1.1.1.1/setup/" rel="noopener">Official documentation</a></p>
+    </section>
+    <section class="card">
+      <h3>TWNIC Quad101</h3>
+      <p>Quad101 by TWNIC, the Taiwan Network Information Center. Resolvers located in Taiwan, no filtering.</p>
+      <p class="addr">101.101.101.101 · 101.102.103.104 · 2001:de4::101 · 2001:de4::102</p>
+      <div class="links">
+      <a class="btn" href="twnic-doh.mobileconfig" download>DoH · DNS over HTTPS<small>https://dns.twnic.tw/dns-query</small></a>
+      <a class="btn" href="twnic-dot.mobileconfig" download>DoT · DNS over TLS<small>dns.twnic.tw</small></a>
+      </div>
+      <p class="src"><a href="https://twnic-public-dns.twnic.tw/index_en.html" rel="noopener">Official documentation</a></p>
+    </section>
+    <h2 class="cat">Security</h2>
+    <p class="blurb">Also blocks known malware and phishing domains.</p>
+    <section class="card">
+      <h3>Quad9</h3>
+      <p>Quad9. Swiss non-profit resolver that blocks known malware and phishing domains.</p>
+      <p class="addr">9.9.9.9 · 149.112.112.112 · 2620:fe::fe · 2620:fe::9</p>
+      <div class="links">
+      <a class="btn" href="quad9-doh.mobileconfig" download>DoH · DNS over HTTPS<small>https://dns.quad9.net/dns-query</small></a>
+      <a class="btn" href="quad9-dot.mobileconfig" download>DoT · DNS over TLS<small>dns.quad9.net</small></a>
+      </div>
+      <p class="src"><a href="https://quad9.net/service/service-addresses-and-features/" rel="noopener">Official documentation</a></p>
+    </section>
+    <section class="card">
+      <h3>Cloudflare 1.1.1.2</h3>
+      <p>Cloudflare 1.1.1.1 for Families, security only. Blocks malware and phishing domains.</p>
+      <p class="addr">1.1.1.2 · 1.0.0.2 · 2606:4700:4700::1112 · 2606:4700:4700::1002</p>
+      <div class="links">
+      <a class="btn" href="cloudflare-security-doh.mobileconfig" download>DoH · DNS over HTTPS<small>https://security.cloudflare-dns.com/dns-query</small></a>
+      <a class="btn" href="cloudflare-security-dot.mobileconfig" download>DoT · DNS over TLS<small>security.cloudflare-dns.com</small></a>
+      </div>
+      <p class="src"><a href="https://developers.cloudflare.com/1.1.1.1/setup/" rel="noopener">Official documentation</a></p>
+    </section>
+    <section class="card">
+      <h3>DNS4EU Protective</h3>
+      <p>DNS4EU, the European Union's public resolver. Blocks malware and phishing domains.</p>
+      <p class="addr">86.54.11.1 · 2a13:1001::86:54:11:1</p>
+      <div class="links">
+      <a class="btn" href="dns4eu-protective-doh.mobileconfig" download>DoH · DNS over HTTPS<small>https://protective.joindns4.eu/dns-query</small></a>
+      <a class="btn" href="dns4eu-protective-dot.mobileconfig" download>DoT · DNS over TLS<small>protective.joindns4.eu</small></a>
+      </div>
+      <p class="src"><a href="https://www.joindns4.eu/for-public" rel="noopener">Official documentation</a></p>
+    </section>
+    <h2 class="cat">Ad blocking</h2>
+    <p class="blurb">Blocks ads and trackers; a few sites may misbehave.</p>
+    <section class="card">
+      <h3>AdGuard DNS</h3>
+      <p>AdGuard DNS (Default). Blocks ads and trackers at the DNS level.</p>
+      <p class="addr">94.140.14.14 · 94.140.15.15 · 2a10:50c0::ad1:ff · 2a10:50c0::ad2:ff</p>
+      <div class="links">
+      <a class="btn" href="adguard-doh.mobileconfig" download>DoH · DNS over HTTPS<small>https://dns.adguard-dns.com/dns-query</small></a>
+      <a class="btn" href="adguard-dot.mobileconfig" download>DoT · DNS over TLS<small>dns.adguard-dns.com</small></a>
+      </div>
+      <p class="src"><a href="https://adguard-dns.io/en/public-dns.html" rel="noopener">Official documentation</a></p>
+    </section>
+    <section class="card">
+      <h3>DNS4EU Ad Blocking</h3>
+      <p>DNS4EU with ad blocking. Blocks malware, phishing, ads and trackers.</p>
+      <p class="addr">86.54.11.13 · 2a13:1001::86:54:11:13</p>
+      <div class="links">
+      <a class="btn" href="dns4eu-noads-doh.mobileconfig" download>DoH · DNS over HTTPS<small>https://noads.joindns4.eu/dns-query</small></a>
+      <a class="btn" href="dns4eu-noads-dot.mobileconfig" download>DoT · DNS over TLS<small>noads.joindns4.eu</small></a>
+      </div>
+      <p class="src"><a href="https://www.joindns4.eu/for-public" rel="noopener">Official documentation</a></p>
+    </section>
+    <h2 class="cat">Family</h2>
+    <p class="blurb">Blocks adult content, meant for children's devices.</p>
+    <section class="card">
+      <h3>Cloudflare 1.1.1.3</h3>
+      <p>Cloudflare 1.1.1.1 for Families. Blocks malware, phishing and adult content.</p>
+      <p class="addr">1.1.1.3 · 1.0.0.3 · 2606:4700:4700::1113 · 2606:4700:4700::1003</p>
+      <div class="links">
+      <a class="btn" href="cloudflare-family-doh.mobileconfig" download>DoH · DNS over HTTPS<small>https://family.cloudflare-dns.com/dns-query</small></a>
+      <a class="btn" href="cloudflare-family-dot.mobileconfig" download>DoT · DNS over TLS<small>family.cloudflare-dns.com</small></a>
+      </div>
+      <p class="src"><a href="https://developers.cloudflare.com/1.1.1.1/setup/" rel="noopener">Official documentation</a></p>
+    </section>
+    <section class="card">
+      <h3>AdGuard DNS Family</h3>
+      <p>AdGuard DNS Family protection. Blocks ads, trackers and adult content, and turns on Safe Search.</p>
+      <p class="addr">94.140.14.15 · 94.140.15.16 · 2a10:50c0::bad1:ff · 2a10:50c0::bad2:ff</p>
+      <div class="links">
+      <a class="btn" href="adguard-family-doh.mobileconfig" download>DoH · DNS over HTTPS<small>https://family.adguard-dns.com/dns-query</small></a>
+      <a class="btn" href="adguard-family-dot.mobileconfig" download>DoT · DNS over TLS<small>family.adguard-dns.com</small></a>
+      </div>
+      <p class="src"><a href="https://adguard-dns.io/en/public-dns.html" rel="noopener">Official documentation</a></p>
+    </section>
+    <section class="card">
+      <h3>DNS4EU Child Protection</h3>
+      <p>DNS4EU with child protection. Blocks malware, phishing and adult content.</p>
+      <p class="addr">86.54.11.12 · 2a13:1001::86:54:11:12</p>
+      <div class="links">
+      <a class="btn" href="dns4eu-child-doh.mobileconfig" download>DoH · DNS over HTTPS<small>https://child.joindns4.eu/dns-query</small></a>
+      <a class="btn" href="dns4eu-child-dot.mobileconfig" download>DoT · DNS over TLS<small>child.joindns4.eu</small></a>
+      </div>
+      <p class="src"><a href="https://www.joindns4.eu/for-public" rel="noopener">Official documentation</a></p>
     </section>
 
   <section class="howto">

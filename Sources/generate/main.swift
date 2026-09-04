@@ -40,9 +40,15 @@ struct DoTSettings: Decodable {
     let addresses: [String]?
 }
 
+enum Category: String, Decodable, CaseIterable {
+    case general, security, ads, family
+}
+
 struct Provider: Decodable {
     let id: String
     let name: String
+    let category: Category
+    let order: Int?
     let website: String
     let description: LocalizedText
     let addresses: [String]
@@ -208,9 +214,7 @@ if providerFiles.isEmpty { fail("no provider JSON files found in \(options.provi
 
 try? fm.createDirectory(atPath: options.out, withIntermediateDirectories: true)
 
-var generated: [GeneratedProfile] = []
-var seenIdentifiers = Set<String>()
-
+var providers: [Provider] = []
 for file in providerFiles {
     let path = (options.providers as NSString).appendingPathComponent(file)
     guard let data = fm.contents(atPath: path) else { fail("cannot read \(path)") }
@@ -221,7 +225,21 @@ for file in providerFiles {
     if provider.id != expectedId { fail("\(file): id \"\(provider.id)\" must match the file name") }
     if provider.addresses.isEmpty { fail("\(file): addresses must not be empty") }
     if provider.doh == nil && provider.dot == nil { fail("\(file): needs at least one of doh / dot") }
+    providers.append(provider)
+}
 
+// Category order, then explicit order, then name: this drives the download page.
+let categoryRank = Dictionary(uniqueKeysWithValues: Category.allCases.enumerated().map { ($1, $0) })
+providers.sort {
+    let a = (categoryRank[$0.category]!, $0.order ?? 100, $0.name)
+    let b = (categoryRank[$1.category]!, $1.order ?? 100, $1.name)
+    return a < b
+}
+
+var generated: [GeneratedProfile] = []
+var seenIdentifiers = Set<String>()
+
+for provider in providers {
     for transport in Transport.allCases {
         guard let (plist, info) = buildProfile(provider: provider, transport: transport, config: config) else { continue }
         if !seenIdentifiers.insert(info.identifier).inserted { fail("duplicate identifier \(info.identifier)") }

@@ -1,12 +1,23 @@
 {
   "id": "cloudflare",
   "name": "Cloudflare 1.1.1.1",
-  "website": "https://developers.cloudflare.com/1.1.1.1/encryption/",
+  "category": "general",
+  "order": 20,
+  "website": "https://developers.cloudflare.com/1.1.1.1/setup/",
   "description": {
     "en": "Cloudflare 1.1.1.1. Privacy-focused resolver, no filtering.",
     "zh-Hant": "Cloudflare 1.1.1.1，主打隱私，不做任何過濾。"
   },
-  "addresses": ["1.1.1.1", "1.0.0.1", "2606:4700:4700::1111", "2606:4700:4700::1001"],
-  "doh": { "serverURL": "https://cloudflare-dns.com/dns-query" },
-  "dot": { "serverName": "cloudflare-dns.com" }
+  "addresses": [
+    "1.1.1.1",
+    "1.0.0.1",
+    "2606:4700:4700::1111",
+    "2606:4700:4700::1001"
+  ],
+  "doh": {
+    "serverURL": "https://cloudflare-dns.com/dns-query"
+  },
+  "dot": {
+    "serverName": "cloudflare-dns.com"
+  }
 }

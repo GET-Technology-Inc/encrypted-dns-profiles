@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ConsentText</key>
+	<dict>
+		<key>default</key>
+		<string>Quad101 by TWNIC, the Taiwan Network Information Center. Resolvers located in Taiwan, no filtering.
+
+This profile only changes the DNS resolver used by this device to an encrypted one (DNS over HTTPS / DNS over TLS). It does not install certificates, VPNs, or any management. You can remove it at any time from Settings.</string>
+		<key>en</key>
+		<string>Quad101 by TWNIC, the Taiwan Network Information Center. Resolvers located in Taiwan, no filtering.
+
+This profile only changes the DNS resolver used by this device to an encrypted one (DNS over HTTPS / DNS over TLS). It does not install certificates, VPNs, or any management. You can remove it at any time from Settings.</string>
+		<key>zh-Hant</key>
+		<string>台灣網路資訊中心（TWNIC）的 Quad101，主機在台灣，不做任何過濾。
+
+此描述檔只會把裝置使用的 DNS 解析器改成加密連線（DNS over HTTPS / DNS over TLS），不會安裝憑證、VPN 或任何管理設定，隨時可在「設定」中移除。</string>
+	</dict>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>DNSSettings</key>
+			<dict>
+				<key>DNSProtocol</key>
+				<string>TLS</string>
+				<key>ServerAddresses</key>
+				<array>
+					<string>101.101.101.101</string>
+					<string>101.102.103.104</string>
+					<string>2001:de4::101</string>
+					<string>2001:de4::102</string>
+				</array>
+				<key>ServerName</key>
+				<string>dns.twnic.tw</string>
+			</dict>
+			<key>PayloadDescription</key>
+			<string>DNS over TLS · dns.twnic.tw</string>
+			<key>PayloadDisplayName</key>
+			<string>DNS over TLS: TWNIC Quad101</string>
+			<key>PayloadIdentifier</key>
+			<string>tw.com.getinfo.dns.twnic.dot.dnsSettings</string>
+			<key>PayloadType</key>
+			<string>com.apple.dnsSettings.managed</string>
+			<key>PayloadUUID</key>
+			<string>0C8E7560-CD63-5251-8134-B645FE82E299</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>ProhibitDisablement</key>
+			<false/>
+		</dict>
+	</array>
+	<key>PayloadDescription</key>
+	<string>DNS over TLS · dns.twnic.tw</string>
+	<key>PayloadDisplayName</key>
+	<string>TWNIC Quad101 (DoT)</string>
+	<key>PayloadIdentifier</key>
+	<string>tw.com.getinfo.dns.twnic.dot</string>
+	<key>PayloadOrganization</key>
+	<string>珈特科技股份有限公司 GET Technology Inc.</string>
+	<key>PayloadRemovalDisallowed</key>
+	<false/>
+	<key>PayloadScope</key>
+	<string>System</string>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadUUID</key>
+	<string>1A23EE5A-0785-5D03-AD47-A1926353055F</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+</dict>
+</plist>
