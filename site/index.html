@@ -4,19 +4,22 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Encrypted DNS Profiles</title>
-<meta name="description" content="Signed iOS / iPadOS / macOS configuration profiles for encrypted DNS (DNS over HTTPS, DNS over TLS) from Google, Cloudflare, AdGuard and more. 已簽章的加密 DNS 描述檔。">
+<meta name="description" content="Signed configuration profiles for encrypted DNS (DNS over HTTPS, DNS over TLS) on iOS, iPadOS and macOS. 已簽章的加密 DNS 描述檔。">
 <style>
   :root { color-scheme: light dark; --fg: #1d1d1f; --bg: #fff; --muted: #6e6e73; --card: #f5f5f7; --accent: #0071e3; }
   @media (prefers-color-scheme: dark) { :root { --fg: #f5f5f7; --bg: #000; --muted: #a1a1a6; --card: #1c1c1e; --accent: #2997ff; } }
   * { box-sizing: border-box; }
-  body { margin: 0; padding: 2rem 1rem 4rem; font: 16px/1.6 -apple-system, BlinkMacSystemFont, "PingFang TC", "Helvetica Neue", sans-serif; color: var(--fg); background: var(--bg); }
+  body { margin: 0; padding: 1.5rem 1rem 4rem; font: 16px/1.6 -apple-system, BlinkMacSystemFont, "PingFang TC", "Helvetica Neue", sans-serif; color: var(--fg); background: var(--bg); }
   main { max-width: 720px; margin: 0 auto; }
-  h1 { font-size: 1.9rem; margin: 0 0 .25rem; }
-  .lead { color: var(--muted); margin-top: 0; }
+  header { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+  h1 { font-size: 1.9rem; margin: 0; }
+  .switch button { background: none; border: 1px solid var(--muted); color: var(--fg); border-radius: 999px; padding: .25rem .8rem; font: inherit; font-size: .85rem; cursor: pointer; }
+  .switch button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .lead { color: var(--muted); margin: .5rem 0 1rem; }
   .card { background: var(--card); border-radius: 14px; padding: 1.25rem 1.25rem 1rem; margin: 1rem 0; }
   .card h2 { margin: 0 0 .25rem; font-size: 1.25rem; }
   .card p { margin: .25rem 0; }
-  .en, .addr, .src { color: var(--muted); font-size: .9rem; }
+  .addr, .src, .note { color: var(--muted); font-size: .9rem; }
   .addr { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
   .links { display: grid; gap: .6rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); margin: .75rem 0; }
   .btn { display: block; padding: .7rem .9rem; border-radius: 10px; background: var(--accent); color: #fff; text-decoration: none; font-weight: 600; }
@@ -25,60 +28,126 @@
   .howto ol { padding-left: 1.25rem; }
   footer { margin-top: 2.5rem; color: var(--muted); font-size: .85rem; }
   a { color: var(--accent); }
+  [hidden] { display: none !important; }
 </style>
 </head>
 <body>
 <main>
-  <h1>Encrypted DNS Profiles</h1>
-  <p class="lead">加密 DNS 描述檔（DoH / DoT），適用 iOS 14、iPadOS 14、macOS 11 以上。所有描述檔皆由 珈特科技股份有限公司 GET Technology Inc. 以 Apple Developer ID 簽章，安裝時會顯示「已驗證」。<br>
-  Signed configuration profiles for encrypted DNS on iOS 14+, iPadOS 14+ and macOS 11+.</p>
+  <header>
+    <h1>Encrypted DNS Profiles</h1>
+    <div class="switch" role="group">
+      <button type="button" data-set-lang="zh-Hant">繁體中文</button>
+      <button type="button" data-set-lang="en">English</button>
+    </div>
+  </header>
+
+<div class="lang" lang="zh-Hant" data-lang="zh-Hant" hidden>
+  <p class="lead">加密 DNS 描述檔（DNS over HTTPS、DNS over TLS）。所有描述檔皆以 Apple Developer ID 簽章，安裝時會顯示「已驗證」。<br>適用 iOS 14、iPadOS 14、macOS 11 以上。</p>
 
     <section class="card">
       <h2>AdGuard DNS</h2>
       <p>AdGuard DNS（預設版），在 DNS 層擋廣告與追蹤器。</p>
-      <p class="en">AdGuard DNS (Default). Blocks ads and trackers at the DNS level.</p>
       <p class="addr">94.140.14.14 · 94.140.15.15 · 2a10:50c0::ad1:ff · 2a10:50c0::ad2:ff</p>
       <div class="links">
-        <a class="btn" href="adguard-doh.mobileconfig" download>DoH · DNS over HTTPS<small>https://dns.adguard-dns.com/dns-query</small></a>
-    <a class="btn" href="adguard-dot.mobileconfig" download>DoT · DNS over TLS<small>dns.adguard-dns.com</small></a>
+      <a class="btn" href="adguard-doh.mobileconfig" download>DoH · DNS over HTTPS<small>https://dns.adguard-dns.com/dns-query</small></a>
+      <a class="btn" href="adguard-dot.mobileconfig" download>DoT · DNS over TLS<small>dns.adguard-dns.com</small></a>
       </div>
-      <p class="src"><a href="https://adguard-dns.io/kb/general/dns-providers/" rel="noopener">官方文件 / Official documentation</a></p>
+      <p class="src"><a href="https://adguard-dns.io/kb/general/dns-providers/" rel="noopener">官方文件</a></p>
     </section>
     <section class="card">
       <h2>Cloudflare 1.1.1.1</h2>
       <p>Cloudflare 1.1.1.1，主打隱私，不做任何過濾。</p>
-      <p class="en">Cloudflare 1.1.1.1. Privacy-focused resolver, no filtering.</p>
       <p class="addr">1.1.1.1 · 1.0.0.1 · 2606:4700:4700::1111 · 2606:4700:4700::1001</p>
       <div class="links">
-        <a class="btn" href="cloudflare-doh.mobileconfig" download>DoH · DNS over HTTPS<small>https://cloudflare-dns.com/dns-query</small></a>
-    <a class="btn" href="cloudflare-dot.mobileconfig" download>DoT · DNS over TLS<small>cloudflare-dns.com</small></a>
+      <a class="btn" href="cloudflare-doh.mobileconfig" download>DoH · DNS over HTTPS<small>https://cloudflare-dns.com/dns-query</small></a>
+      <a class="btn" href="cloudflare-dot.mobileconfig" download>DoT · DNS over TLS<small>cloudflare-dns.com</small></a>
       </div>
-      <p class="src"><a href="https://developers.cloudflare.com/1.1.1.1/encryption/" rel="noopener">官方文件 / Official documentation</a></p>
+      <p class="src"><a href="https://developers.cloudflare.com/1.1.1.1/encryption/" rel="noopener">官方文件</a></p>
     </section>
     <section class="card">
       <h2>Google Public DNS</h2>
       <p>Google 公共 DNS，一般用途，不做任何過濾。</p>
-      <p class="en">Google Public DNS. General purpose resolver, no filtering.</p>
       <p class="addr">8.8.8.8 · 8.8.4.4 · 2001:4860:4860::8888 · 2001:4860:4860::8844</p>
       <div class="links">
-        <a class="btn" href="google-doh.mobileconfig" download>DoH · DNS over HTTPS<small>https://dns.google/dns-query</small></a>
-    <a class="btn" href="google-dot.mobileconfig" download>DoT · DNS over TLS<small>dns.google</small></a>
+      <a class="btn" href="google-doh.mobileconfig" download>DoH · DNS over HTTPS<small>https://dns.google/dns-query</small></a>
+      <a class="btn" href="google-dot.mobileconfig" download>DoT · DNS over TLS<small>dns.google</small></a>
       </div>
-      <p class="src"><a href="https://developers.google.com/speed/public-dns/docs/secure-transports" rel="noopener">官方文件 / Official documentation</a></p>
+      <p class="src"><a href="https://developers.google.com/speed/public-dns/docs/secure-transports" rel="noopener">官方文件</a></p>
     </section>
 
   <section class="howto">
-    <h2>安裝方式 / How to install</h2>
+    <h2>安裝方式</h2>
     <ol>
-      <li>在 iPhone 或 iPad 上用 Safari 點選上方的下載連結，允許下載描述檔。<br>Open this page in Safari on your iPhone or iPad and tap a download link, then allow the profile download.</li>
-      <li>前往「設定」，點最上方的「已下載描述檔」，確認簽署者顯示為已驗證後安裝。<br>Go to Settings, tap "Profile Downloaded" at the top, check that the signer shows as Verified, then install.</li>
-      <li>要換供應商就安裝另一份，舊的會自動被取代；要恢復預設就到「設定 › 一般 › VPN 與裝置管理」移除描述檔。<br>Installing another profile replaces the previous one. Remove the profile under Settings › General › VPN &amp; Device Management to go back to the default resolver.</li>
+      <li>在 iPhone 或 iPad 上用 Safari 開這個頁面，點選要用的描述檔，允許下載。</li>
+      <li>前往「設定」，點最上方的「已下載描述檔」，確認簽署者顯示為已驗證後安裝。</li>
+      <li>在 Mac 上下載後，到「系統設定 › 一般 › 裝置管理」點兩下安裝，會要求管理者密碼。</li>
+      <li>要換供應商就安裝另一份，舊的會自動被取代；要恢復預設，到「設定 › 一般 › VPN 與裝置管理」移除描述檔即可。</li>
     </ol>
-    <p class="en">描述檔只設定 DNS 解析器，不會安裝憑證、VPN 或任何管理設定。原始碼與產生方式公開於 <a href="https://github.com/GET-Technology-Inc/encrypted-dns-profiles">GitHub</a>。<br>
-    These profiles only set the DNS resolver. No certificates, VPNs or management payloads are installed. Source and build pipeline are on <a href="https://github.com/GET-Technology-Inc/encrypted-dns-profiles">GitHub</a>.</p>
+    <p class="note">描述檔只設定 DNS 解析器，不會安裝憑證、VPN 或任何管理設定。 <a href="https://github.com/GET-Technology-Inc/encrypted-dns-profiles">原始碼與產生流程</a></p>
   </section>
+</div>
+
+<div class="lang" lang="en" data-lang="en" hidden>
+  <p class="lead">Configuration profiles for encrypted DNS (DNS over HTTPS and DNS over TLS). Every profile is signed with an Apple Developer ID and shows as Verified on install.<br>Requires iOS 14, iPadOS 14 or macOS 11 and later.</p>
+
+    <section class="card">
+      <h2>AdGuard DNS</h2>
+      <p>AdGuard DNS (Default). Blocks ads and trackers at the DNS level.</p>
+      <p class="addr">94.140.14.14 · 94.140.15.15 · 2a10:50c0::ad1:ff · 2a10:50c0::ad2:ff</p>
+      <div class="links">
+      <a class="btn" href="adguard-doh.mobileconfig" download>DoH · DNS over HTTPS<small>https://dns.adguard-dns.com/dns-query</small></a>
+      <a class="btn" href="adguard-dot.mobileconfig" download>DoT · DNS over TLS<small>dns.adguard-dns.com</small></a>
+      </div>
+      <p class="src"><a href="https://adguard-dns.io/kb/general/dns-providers/" rel="noopener">Official documentation</a></p>
+    </section>
+    <section class="card">
+      <h2>Cloudflare 1.1.1.1</h2>
+      <p>Cloudflare 1.1.1.1. Privacy-focused resolver, no filtering.</p>
+      <p class="addr">1.1.1.1 · 1.0.0.1 · 2606:4700:4700::1111 · 2606:4700:4700::1001</p>
+      <div class="links">
+      <a class="btn" href="cloudflare-doh.mobileconfig" download>DoH · DNS over HTTPS<small>https://cloudflare-dns.com/dns-query</small></a>
+      <a class="btn" href="cloudflare-dot.mobileconfig" download>DoT · DNS over TLS<small>cloudflare-dns.com</small></a>
+      </div>
+      <p class="src"><a href="https://developers.cloudflare.com/1.1.1.1/encryption/" rel="noopener">Official documentation</a></p>
+    </section>
+    <section class="card">
+      <h2>Google Public DNS</h2>
+      <p>Google Public DNS. General purpose resolver, no filtering.</p>
+      <p class="addr">8.8.8.8 · 8.8.4.4 · 2001:4860:4860::8888 · 2001:4860:4860::8844</p>
+      <div class="links">
+      <a class="btn" href="google-doh.mobileconfig" download>DoH · DNS over HTTPS<small>https://dns.google/dns-query</small></a>
+      <a class="btn" href="google-dot.mobileconfig" download>DoT · DNS over TLS<small>dns.google</small></a>
+      </div>
+      <p class="src"><a href="https://developers.google.com/speed/public-dns/docs/secure-transports" rel="noopener">Official documentation</a></p>
+    </section>
+
+  <section class="howto">
+    <h2>How to install</h2>
+    <ol>
+      <li>Open this page in Safari on your iPhone or iPad, tap a profile and allow the download.</li>
+      <li>Go to Settings, tap &quot;Profile Downloaded&quot; at the top, check that the signer shows as Verified, then install.</li>
+      <li>On a Mac, open System Settings › General › Device Management after downloading and double-click the profile. An administrator password is required.</li>
+      <li>Installing another profile replaces the previous one. To go back to the default resolver, remove the profile under Settings › General › VPN &amp; Device Management.</li>
+    </ol>
+    <p class="note">These profiles only set the DNS resolver. No certificates, VPNs or management payloads are installed. <a href="https://github.com/GET-Technology-Inc/encrypted-dns-profiles">Source and build pipeline</a></p>
+  </section>
+</div>
 
   <footer>珈特科技股份有限公司 GET Technology Inc.</footer>
 </main>
+<script>
+  (function () {
+    var blocks = document.querySelectorAll('[data-lang]');
+    var buttons = document.querySelectorAll('[data-set-lang]');
+    function show(lang) {
+      blocks.forEach(function (b) { b.hidden = b.dataset.lang !== lang; });
+      buttons.forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.setLang === lang ? 'true' : 'false'); });
+      document.documentElement.lang = lang;
+    }
+    buttons.forEach(function (b) { b.addEventListener('click', function () { show(b.dataset.setLang); }); });
+    var preferred = (navigator.languages || [navigator.language || 'en']).some(function (l) { return /^zh/i.test(l); }) ? 'zh-Hant' : 'en';
+    show(preferred);
+  })();
+</script>
 </body>
 </html>

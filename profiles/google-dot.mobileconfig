@@ -5,11 +5,17 @@
 	<key>ConsentText</key>
 	<dict>
 		<key>default</key>
-		<string>This profile only changes the DNS resolver used by this device to an encrypted one (DNS over HTTPS / DNS over TLS). It does not install certificates, VPNs, or any management. You can remove it at any time from Settings.</string>
+		<string>Google Public DNS. General purpose resolver, no filtering.
+
+This profile only changes the DNS resolver used by this device to an encrypted one (DNS over HTTPS / DNS over TLS). It does not install certificates, VPNs, or any management. You can remove it at any time from Settings.</string>
 		<key>en</key>
-		<string>This profile only changes the DNS resolver used by this device to an encrypted one (DNS over HTTPS / DNS over TLS). It does not install certificates, VPNs, or any management. You can remove it at any time from Settings.</string>
+		<string>Google Public DNS. General purpose resolver, no filtering.
+
+This profile only changes the DNS resolver used by this device to an encrypted one (DNS over HTTPS / DNS over TLS). It does not install certificates, VPNs, or any management. You can remove it at any time from Settings.</string>
 		<key>zh-Hant</key>
-		<string>此描述檔只會把裝置使用的 DNS 解析器改成加密連線（DNS over HTTPS / DNS over TLS），不會安裝憑證、VPN 或任何管理設定，隨時可在「設定」中移除。</string>
+		<string>Google 公共 DNS，一般用途，不做任何過濾。
+
+此描述檔只會把裝置使用的 DNS 解析器改成加密連線（DNS over HTTPS / DNS over TLS），不會安裝憑證、VPN 或任何管理設定，隨時可在「設定」中移除。</string>
 	</dict>
 	<key>PayloadContent</key>
 	<array>
@@ -29,7 +35,7 @@
 				<string>dns.google</string>
 			</dict>
 			<key>PayloadDescription</key>
-			<string>DNS over TLS via dns.google</string>
+			<string>DNS over TLS · dns.google</string>
 			<key>PayloadDisplayName</key>
 			<string>DNS over TLS: Google Public DNS</string>
 			<key>PayloadIdentifier</key>
@@ -45,10 +51,7 @@
 		</dict>
 	</array>
 	<key>PayloadDescription</key>
-	<string>Google Public DNS. General purpose resolver, no filtering.
-Google 公共 DNS，一般用途，不做任何過濾。
-
-DNS over TLS: dns.google</string>
+	<string>DNS over TLS · dns.google</string>
 	<key>PayloadDisplayName</key>
 	<string>Google Public DNS (DoT)</string>
 	<key>PayloadIdentifier</key>
